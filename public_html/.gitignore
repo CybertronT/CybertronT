@@ -1,12 +1,12 @@
 # Composer / PHP dependencies
-**/vendor/
-**/.well-known/
-**/cgi-bin
+vendor/
+well-known/
+cgi-bin
 
 # Environment / config files anywhere
 **/.env
-**/config.php
-**/.htaccess
+config.php
+.htaccess
 **/*.local.php
  
 
