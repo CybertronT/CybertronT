@@ -1,0 +1,32 @@
+# Node.js dependencies
+node_modules/
+
+# Composer / PHP dependencies
+vendor/
+/vendor/
+./vendor
+
+# Environment / config files anywhere
+**/.env
+**/config.php
+**/.htaccess
+**/*.local.php
+
+# Logs
+**/*.log
+logs/
+
+# IDE / editor files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Backup / temp files
+*.bak
+*.swp
+*.tmp
+*~
