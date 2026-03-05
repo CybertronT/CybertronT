@@ -8,7 +8,7 @@
 **/config.php
 **/.htaccess
 **/*.local.php
-
+ 
 
 # Logs
 **/*.log
