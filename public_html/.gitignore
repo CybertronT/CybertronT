@@ -1,5 +1,6 @@
 # Composer / PHP dependencies
 vendor/
+hostel/
 well-known/
 cgi-bin
 
