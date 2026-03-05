@@ -1,0 +1,65 @@
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "campus" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 21
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "area" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 22
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "room_type" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 23
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "budget_min" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 24
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "budget_max" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 25
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "gender_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 26
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "religion_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 27
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "move_in_date" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 28
+[19-Sep-2025 14:17:12 UTC] PHP Warning:  Undefined array key "description" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 29
+[19-Sep-2025 17:38:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/student/submit_roommate_request.php:45
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/student/submit_roommate_request.php on line 45
+[19-Sep-2025 17:38:15 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/student/submit_roommate_request.php:45
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/student/submit_roommate_request.php on line 45
+[19-Sep-2025 17:42:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/student/submit_roommate_request.php:45
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/student/submit_roommate_request.php on line 45
+[19-Sep-2025 17:43:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/student/submit_roommate_request.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/student/submit_roommate_request.php on line 47
+[19-Sep-2025 17:46:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/student/submit_roommate_request.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/student/submit_roommate_request.php on line 47
+[20-Sep-2025 08:15:00 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/hostelco/public_html/student/update_request.php:89
+Stack trace:
+#0 /home1/hostelco/public_html/student/update_request.php(89): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home1/hostelco/public_html/student/update_request.php on line 89
+[20-Sep-2025 12:52:16 UTC] PHP Warning:  Undefined array key "campus" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 21
+[20-Sep-2025 12:52:16 UTC] PHP Warning:  Undefined array key "room_type" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 23
+[20-Sep-2025 12:52:16 UTC] PHP Warning:  Undefined array key "gender_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 26
+[20-Sep-2025 12:52:16 UTC] PHP Warning:  Undefined array key "religion_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 27
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "campus" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 21
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "area" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 22
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "room_type" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 23
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "budget_min" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 24
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "budget_max" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 25
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "gender_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 26
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "religion_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 27
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "move_in_date" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 28
+[21-Sep-2025 13:36:28 UTC] PHP Warning:  Undefined array key "description" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 29
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "campus" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 21
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "area" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 22
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "room_type" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 23
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "budget_min" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 24
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "budget_max" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 25
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "gender_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 26
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "religion_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 27
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "move_in_date" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 28
+[10-Oct-2025 06:28:27 UTC] PHP Warning:  Undefined array key "description" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 29
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "campus" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 21
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "area" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 22
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "room_type" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 23
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "budget_min" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 24
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "budget_max" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 25
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "gender_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 26
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "religion_pref" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 27
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "move_in_date" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 28
+[10-Oct-2025 06:31:56 UTC] PHP Warning:  Undefined array key "description" in /home1/hostelco/public_html/student/submit_roommate_request.php on line 29

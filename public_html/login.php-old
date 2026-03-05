@@ -1,0 +1,153 @@
+<?php
+session_start();
+require "config.php";
+require_once "csrf.php";
+
+$errors = [];
+$success = '';
+$redirect = $_POST['redirect'] ?? $_GET['redirect'] ?? null;
+
+/**
+ * Ensure redirect stays inside the site (avoid open redirects).
+ * Allows only relative paths like /listing.php, student/student_dashboard.php
+ */
+function safe_redirect($url, $default = 'dashboard.php') {
+    if ($url && preg_match('/^[a-zA-Z0-9_\-\/]+(\.php)?$/', $url)) {
+        return $url;
+    }
+    return $default;
+}
+
+if (isset($_GET['registered'])) {
+    $success = "Registration successful! You can now log in.";
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validate CSRF token
+    if (!csrf_validate($_POST['csrf_token'] ?? '')) {
+        // Invalid CSRF token → refresh page
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit;
+    }
+
+    $user = trim($_POST['user'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if (!$user || !$password) {
+        $errors[] = "All fields are required.";
+    } else {
+        $stmt = $conn->prepare("
+            SELECT id, full_name, username, email, password, contact, role 
+            FROM users 
+            WHERE username=? OR email=? 
+            LIMIT 1
+        ");
+        $stmt->bind_param("ss", $user, $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+
+            if (password_verify($password, $row['password'])) {
+                // Store session data
+                $_SESSION['user_id']  = $row['id'];
+                $_SESSION['role']     = $row['role'];
+                $_SESSION['name']     = $row['full_name'];
+                $_SESSION['contact']  = $row['contact'];
+
+                // Case 1: Redirect param exists → go there (safely)
+                if (!empty($redirect)) {
+                    $target = safe_redirect($redirect);
+                    header("Location: $target");
+                    exit;
+                }
+
+                // Case 2: Role-based redirection
+                switch ($row['role']) {
+                    case 'student':
+                        header("Location: student/student_dashboard.php");
+                        break;
+                    case 'landlord':
+                    case 'agent':
+                    case 'admin':
+                    default:
+                        header("Location: listing/dashboard.php");
+                        break;
+                }
+                exit;
+
+            } else {
+                $errors[] = "Incorrect password.";
+            }
+        } else {
+            $errors[] = "User not found.";
+        }
+        $stmt->close();
+    }
+}
+
+$csrf_token = csrf_token();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HostelConnect • Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:#f5f7fa;color:#333;line-height:1.5;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+.container{width:100%;max-width:400px;padding:30px;background:#fff;border-radius:12px;box-shadow:0 8px 25px rgba(0,0,0,0.08);}
+h1{text-align:center;margin-bottom:10px;color:#0b79d0;font-size:1.8rem;}
+p.lead{text-align:center;margin-bottom:20px;color:#666;font-size:1rem;}
+form{display:flex;flex-direction:column;gap:15px;}
+label{font-weight:600;margin-bottom:5px;font-size:0.95rem;}
+input{width:100%;padding:12px 15px;border-radius:8px;border:1px solid #e5e7eb;font-size:1rem;}
+input:focus{outline:none;border-color:#0b79d0;box-shadow:0 0 5px rgba(11,121,208,0.3);}
+button,.btn-link{width:100%;padding:12px;border-radius:8px;background:#0b79d0;color:#fff;font-weight:600;border:none;cursor:pointer;text-align:center;font-size:1rem;}
+button:hover,.btn-link:hover{background:#095a9d;}
+.error{color:red;margin-bottom:10px;font-size:0.9rem;text-align:center;}
+.success{color:green;margin-bottom:10px;font-size:0.9rem;text-align:center;}
+.footer{text-align:center;margin-top:20px;font-size:.9rem;color:#666;}
+@media(max-width:500px){.container{padding:20px;}h1{font-size:1.5rem;}}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>HostelConnect</h1>
+  <p class="lead">Login to your account</p>
+
+  <?php if(!empty($success)): ?>
+    <div class="success"><?= htmlspecialchars($success) ?></div>
+  <?php endif; ?>
+
+  <?php if(!empty($errors)): ?>
+    <div class="error"><?= implode('<br>', $errors) ?></div>
+  <?php endif; ?>
+
+  <form action="login.php" method="post" autocomplete="on">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
+    <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
+
+    <div class="field">
+      <label for="user">Username or Email</label>
+      <input type="text" id="user" name="user" placeholder="Enter username or email" required>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required>
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="lead" style="margin-top:15px;text-align:center;">Don't have an account? <a href="register.php" style="color:#0b79d0;">Register</a></p>
+</div>
+
+</body>
+</html>

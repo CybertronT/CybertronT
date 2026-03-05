@@ -1,0 +1,775 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HR Exit Survey</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:   #0F1F3D;
+      --navy2:  #162847;
+      --gold:   #C9A84C;
+      --gold2:  #e8c46a;
+      --cream:  #F8F4EE;
+      --cream2: #F0EBE1;
+      --muted:  #8898AA;
+      --border: rgba(15,31,61,0.10);
+      --white:  #ffffff;
+      --shadow: 0 4px 32px rgba(15,31,61,0.10);
+      --red:    #DC2626;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(rgba(15,31,61,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--navy);
+      position: relative;
+      z-index: 2;
+    }
+    .header-inner {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand { display: flex; align-items: center; gap: 16px; }
+    .header-brand img { height: 48px; width: auto; }
+    .brand-text { display: flex; flex-direction: column; gap: 2px; }
+    .brand-eyebrow {
+      font-size: 9.5px; font-weight: 500;
+      letter-spacing: 0.22em; color: var(--gold);
+      text-transform: uppercase;
+    }
+    .brand-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.04em;
+    }
+    .back-btn {
+      text-decoration: none; font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 8px 18px; border-radius: 6px;
+      transition: all 0.2s; letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .back-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.07); }
+    .gold-rule { height: 2px; background: linear-gradient(90deg, var(--gold) 0%, transparent 100%); }
+
+    /* ── Page wrapper ── */
+    .page-wrap {
+      position: relative; z-index: 1;
+      flex: 1;
+      display: flex; justify-content: center;
+      padding: 44px 20px 64px;
+    }
+
+    /* ── Form shell ── */
+    form {
+      background: var(--white);
+      width: 100%; max-width: 900px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    /* ── Form hero ── */
+    .form-hero {
+      background: var(--navy);
+      padding: 32px 40px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-hero::after {
+      content: '';
+      position: absolute; right: -40px; top: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.07);
+      pointer-events: none;
+    }
+    .form-hero-eyebrow {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.85;
+    }
+    .form-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 700; color: var(--white);
+      letter-spacing: 0.03em; line-height: 1.2;
+    }
+    .form-hero p {
+      font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6; max-width: 520px;
+    }
+
+    /* ── Progress ── */
+    .progress-wrap {
+      padding: 0 40px;
+      background: var(--navy2);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 20px;
+      padding-top: 4px;
+    }
+    .progress-container {
+      flex: 1;
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.4s ease;
+    }
+    .progress-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--gold); opacity: 0.8;
+      white-space: nowrap;
+      min-width: 60px; text-align: right;
+    }
+
+    /* ── Form body ── */
+    .form-body { padding: 36px 40px 32px; }
+
+    /* ── Section heading ── */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--cream2);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 18px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Field ── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 28px;
+      margin-bottom: 24px;
+    }
+    .field-grid .full { grid-column: 1 / -1; }
+    .date-row { display: flex; gap: 28px; margin-bottom: 20px; }
+    .date-row .field { flex: 1; }
+
+    .field {
+      display: flex; flex-direction: column; gap: 7px;
+      margin-bottom: 20px;
+    }
+    .field:last-child { margin-bottom: 0; }
+
+    label {
+      font-size: 10.5px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--navy); font-weight: 400;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238898AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    textarea { resize: none; height: 100px; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+      background: var(--white);
+    }
+    input::placeholder, textarea::placeholder { color: #b0bbc8; }
+
+    /* Error state */
+    input[style*="red"], select[style*="red"], textarea[style*="red"] {
+      border-color: var(--red) !important;
+    }
+
+    /* ── Survey question heading ── */
+    .q-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+    .q-sub {
+      font-size: 13px; color: var(--muted);
+      font-weight: 300; margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    /* ── Rating table ── */
+    .survey-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+      font-size: 13.5px;
+    }
+    .survey-table thead tr {
+      background: var(--navy);
+    }
+    .survey-table thead th {
+      padding: 10px 12px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--white);
+      text-align: center;
+      border: none;
+    }
+    .survey-table thead th:first-child { text-align: left; padding-left: 16px; }
+    .survey-table thead th.gold-col { color: var(--gold); }
+
+    .survey-table tbody tr { transition: background 0.15s; }
+    .survey-table tbody tr:nth-child(even) { background: var(--cream); }
+    .survey-table tbody tr:hover { background: rgba(201,168,76,0.07); }
+
+    .survey-table td {
+      padding: 12px 12px;
+      border: none;
+      border-bottom: 1px solid rgba(15,31,61,0.06);
+      color: #3a4a60;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .survey-table td:first-child {
+      text-align: left; font-weight: 500;
+      padding-left: 16px; color: var(--navy);
+    }
+    .survey-table tbody tr:last-child td { border-bottom: none; }
+
+    /* Custom radio */
+    .survey-table input[type="radio"] {
+      appearance: none; -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(15,31,61,0.2);
+      border-radius: 50%;
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.18s;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .survey-table input[type="radio"]:checked {
+      background: var(--navy);
+      border-color: var(--navy);
+      box-shadow: inset 0 0 0 3px var(--white);
+    }
+    .survey-table input[type="radio"]:hover { border-color: var(--gold); }
+
+    /* Yes/No table */
+    .yesno-table { margin-bottom: 28px; }
+
+    /* ── Textarea question ── */
+    .textarea-q { margin-bottom: 26px; }
+
+    /* ── Nav buttons ── */
+    .btn-center {
+      display: flex; justify-content: center;
+      align-items: center; gap: 14px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--cream2);
+    }
+
+    button {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 12px 28px;
+      border: none; border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.22s, transform 0.15s;
+    }
+    button[id="nextBtn"], button[id="submitBtn"] {
+      background: var(--navy); color: var(--white);
+    }
+    button[id="nextBtn"]:hover, button[id="submitBtn"]:hover {
+      background: var(--navy2);
+    }
+    button[id="backBtn"] {
+      background: var(--cream2); color: var(--navy);
+    }
+    button[id="backBtn"]:hover { background: #e4ddd4; }
+    button:active { transform: scale(0.97); }
+    button i { font-size: 14px; }
+    button[id="nextBtn"] i, button[id="submitBtn"] i { color: var(--gold); }
+
+    /* ── Warning ── */
+    #warningMsg {
+      display: none;
+      text-align: center;
+      font-size: 13px;
+      color: var(--red);
+      font-weight: 500;
+      padding: 10px;
+      background: rgba(220,38,38,0.06);
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+
+    /* ── Pages ── */
+    .page1, .page2, .page3, .page4, .page5, .page6 {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 2;
+      background: var(--navy);
+      padding: 18px 32px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .footer-left { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.03em; }
+    .footer-right { display: flex; align-items: center; gap: 6px; }
+    .footer-dot { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; opacity: 0.6; }
+    .footer-label { font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); opacity: 0.7; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner { flex-direction: column; text-align: center; gap: 12px; }
+      .form-hero, .form-body { padding: 24px 20px; }
+      .progress-wrap { padding: 0 20px 16px; }
+      .field-grid { grid-template-columns: 1fr; }
+      .field-grid .full { grid-column: 1; }
+      .date-row { flex-direction: column; gap: 0; }
+      .survey-table { font-size: 12px; }
+      footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-brand">
+      <img src="../logo.png" alt="SROL Logo">
+      <div class="brand-text">
+        <span class="brand-eyebrow">Segilola Resources Operating Limited</span>
+        <span class="brand-title">Human Resources Portal</span>
+      </div>
+    </div>
+    <a href="exit_landing.php" class="back-btn">← Back to Exit Forms</a>
+  </div>
+</header>
+<div class="gold-rule"></div>
+
+<div class="page-wrap">
+  <form method="POST" action="exit_submit.php">
+
+    <div class="form-hero">
+      <span class="form-hero-eyebrow">Offboarding — Confidential</span>
+      <h1>HR Department Exit Survey</h1>
+      <p>Your feedback is valued and will be used to improve the workplace. Please answer honestly — all responses are confidential.</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <span class="progress-label" id="progressLabel">Step 1 of 6</span>
+    </div>
+
+    <div class="form-body">
+
+      <!-- ══ PAGE 1 ══ -->
+      <div class="page1" id="page1">
+        <div class="section-title">Personal Information</div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label>Full Name</label>
+            <input type="text" name="name" id="name" placeholder="e.g. Adaeze Johnson" required>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="text" name="email" id="email" placeholder="e.g. adaeze@company.com" required>
+          </div>
+          <div class="field">
+            <label>Job Title</label>
+            <input type="text" name="job_title" id="job_title" placeholder="e.g. Senior Engineer" required>
+          </div>
+          <div class="field">
+            <label>Department</label>
+            <select name="department" id="department" required>
+              <option value="">— Select Department —</option>
+              <option value="community_relations">COMMUNITY RELATIONS</option>
+              <option value="csd">CSD</option>
+              <option value="exploration">EXPLORATION</option>
+              <option value="finance_admin">FINANCE &amp; ADMIN</option>
+              <option value="hr">HR</option>
+              <option value="hse">HSE</option>
+              <option value="ict">ICT</option>
+              <option value="internal_audit">INTERNAL AUDIT</option>
+              <option value="lab">LAB</option>
+              <option value="lagos_office">LAGOS OFFICE</option>
+              <option value="medical_services">MEDICAL SERVICES</option>
+              <option value="mine">MINE</option>
+              <option value="owner_mining">OWNER MINING</option>
+              <option value="project_engineering">PROJECT ENGINEERING</option>
+              <option value="process_plant_operator">PROCESS PLANT — OPERATOR</option>
+              <option value="process_plant_maintenance">PROCESS PLANT — MAINTENANCE</option>
+              <option value="security">SECURITY</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Start Date with Organisation</label>
+            <input type="date" name="start_date" id="start_date" required>
+          </div>
+          <div class="field">
+            <label>Separation Date</label>
+            <input type="date" name="separation_date" id="separation_date" required>
+          </div>
+          <div class="field">
+            <label>Total Length of Service</label>
+            <input type="text" name="length_of_service" id="length_of_service" placeholder="e.g. 3 years 4 months" required>
+          </div>
+          <div class="field">
+            <label>Other Positions Held</label>
+            <input type="text" name="other_positions" id="other_positions" placeholder="e.g. Junior Analyst (2020–2021)">
+          </div>
+        </div>
+
+        <div class="btn-center">
+          <button type="button" id="nextBtn">Next <i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 2 ══ -->
+      <div class="page2" id="page2">
+        <div class="section-title">Reasons for Leaving</div>
+
+        <p class="q-sub">As part of our effort to monitor and improve our working environment, we would appreciate your frank response to the following questions.</p>
+
+        <div class="textarea-q">
+          <div class="q-label">1. Please describe the primary reason(s) you are leaving your current position.</div>
+          <textarea name="reason_for_leaving" id="reason_for_leaving" placeholder="Share your thoughts here…" required></textarea>
+        </div>
+
+        <div class="q-label">2. Did any dissatisfaction with the following factors influence your decision to leave?</div>
+        <table class="survey-table yesno-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Yes</th>
+              <th>No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Type of work</td><td><input type="radio" name="type_of_work_influence" value="yes"></td><td><input type="radio" name="type_of_work_influence" value="no"></td></tr>
+            <tr><td>Working conditions (hours, travel, flexibility)</td><td><input type="radio" name="working_condition_influence" value="yes"></td><td><input type="radio" name="working_condition_influence" value="no"></td></tr>
+            <tr><td>Pay</td><td><input type="radio" name="pay_influence" value="yes"></td><td><input type="radio" name="pay_influence" value="no"></td></tr>
+            <tr><td>Supervisor</td><td><input type="radio" name="supervisor_influence" value="yes"></td><td><input type="radio" name="supervisor_influence" value="no"></td></tr>
+            <tr><td>Location</td><td><input type="radio" name="location_influence" value="yes"></td><td><input type="radio" name="location_influence" value="no"></td></tr>
+            <tr><td>Cost of living in area</td><td><input type="radio" name="cost_of_living_influence" value="yes"></td><td><input type="radio" name="cost_of_living_influence" value="no"></td></tr>
+            <tr><td>Commute</td><td><input type="radio" name="commute_influence" value="yes"></td><td><input type="radio" name="commute_influence" value="no"></td></tr>
+          </tbody>
+        </table>
+
+        <div class="btn-center">
+          <button type="button" id="backBtn"><i class="fa-solid fa-circle-chevron-left"></i> Previous</button>
+          <button type="button" id="nextBtn">Next <i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 3 ══ -->
+      <div class="page3" id="page3">
+        <div class="section-title">Job Rating</div>
+
+        <div class="q-label">3. Please rate the following aspects of the job you are vacating.</div>
+        <table class="survey-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th class="gold-col">1<br><span style="font-size:9px;opacity:.7">Poor</span></th>
+              <th>2</th>
+              <th>3<br><span style="font-size:9px;opacity:.7">Avg</span></th>
+              <th>4</th>
+              <th class="gold-col">5<br><span style="font-size:9px;opacity:.7">Excel</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Type of work performed</td><td><input type="radio" name="type_of_work_rating" value="1"></td><td><input type="radio" name="type_of_work_rating" value="2"></td><td><input type="radio" name="type_of_work_rating" value="3"></td><td><input type="radio" name="type_of_work_rating" value="4"></td><td><input type="radio" name="type_of_work_rating" value="5"></td></tr>
+            <tr><td>Fairness of workload</td><td><input type="radio" name="workload_rating" value="1"></td><td><input type="radio" name="workload_rating" value="2"></td><td><input type="radio" name="workload_rating" value="3"></td><td><input type="radio" name="workload_rating" value="4"></td><td><input type="radio" name="workload_rating" value="5"></td></tr>
+            <tr><td>Salary</td><td><input type="radio" name="salary_rating" value="1"></td><td><input type="radio" name="salary_rating" value="2"></td><td><input type="radio" name="salary_rating" value="3"></td><td><input type="radio" name="salary_rating" value="4"></td><td><input type="radio" name="salary_rating" value="5"></td></tr>
+            <tr><td>Working conditions</td><td><input type="radio" name="working_condition_rating" value="1"></td><td><input type="radio" name="working_condition_rating" value="2"></td><td><input type="radio" name="working_condition_rating" value="3"></td><td><input type="radio" name="working_condition_rating" value="4"></td><td><input type="radio" name="working_condition_rating" value="5"></td></tr>
+            <tr><td>Tools and Equipment Provided</td><td><input type="radio" name="tools_rating" value="1"></td><td><input type="radio" name="tools_rating" value="2"></td><td><input type="radio" name="tools_rating" value="3"></td><td><input type="radio" name="tools_rating" value="4"></td><td><input type="radio" name="tools_rating" value="5"></td></tr>
+            <tr><td>Training Received</td><td><input type="radio" name="training_rating" value="1"></td><td><input type="radio" name="training_rating" value="2"></td><td><input type="radio" name="training_rating" value="3"></td><td><input type="radio" name="training_rating" value="4"></td><td><input type="radio" name="training_rating" value="5"></td></tr>
+            <tr><td>Co-workers</td><td><input type="radio" name="coworkers_rating" value="1"></td><td><input type="radio" name="coworkers_rating" value="2"></td><td><input type="radio" name="coworkers_rating" value="3"></td><td><input type="radio" name="coworkers_rating" value="4"></td><td><input type="radio" name="coworkers_rating" value="5"></td></tr>
+            <tr><td>Supervision received</td><td><input type="radio" name="supervision_rating" value="1"></td><td><input type="radio" name="supervision_rating" value="2"></td><td><input type="radio" name="supervision_rating" value="3"></td><td><input type="radio" name="supervision_rating" value="4"></td><td><input type="radio" name="supervision_rating" value="5"></td></tr>
+            <tr><td>Level of input in decisions affecting you</td><td><input type="radio" name="decision_input_rating" value="1"></td><td><input type="radio" name="decision_input_rating" value="2"></td><td><input type="radio" name="decision_input_rating" value="3"></td><td><input type="radio" name="decision_input_rating" value="4"></td><td><input type="radio" name="decision_input_rating" value="5"></td></tr>
+          </tbody>
+        </table>
+
+        <div class="btn-center">
+          <button type="button" id="backBtn"><i class="fa-solid fa-circle-chevron-left"></i> Previous</button>
+          <button type="button" id="nextBtn">Next <i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 4 ══ -->
+      <div class="page4" id="page4">
+        <div class="section-title">Organisation Rating</div>
+
+        <div class="q-label">4. Please rate the following aspects of the organisation overall.</div>
+        <table class="survey-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th class="gold-col">1<br><span style="font-size:9px;opacity:.7">Poor</span></th>
+              <th>2</th>
+              <th>3<br><span style="font-size:9px;opacity:.7">Avg</span></th>
+              <th>4</th>
+              <th class="gold-col">5<br><span style="font-size:9px;opacity:.7">Excel</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Recruitment process</td><td><input type="radio" name="Recruitment" value="1"></td><td><input type="radio" name="Recruitment" value="2"></td><td><input type="radio" name="Recruitment" value="3"></td><td><input type="radio" name="Recruitment" value="4"></td><td><input type="radio" name="Recruitment" value="5"></td></tr>
+            <tr><td>New employee orientation</td><td><input type="radio" name="eorientation" value="1"></td><td><input type="radio" name="eorientation" value="2"></td><td><input type="radio" name="eorientation" value="3"></td><td><input type="radio" name="eorientation" value="4"></td><td><input type="radio" name="eorientation" value="5"></td></tr>
+            <tr><td>Training Opportunities</td><td><input type="radio" name="oppor" value="1"></td><td><input type="radio" name="oppor" value="2"></td><td><input type="radio" name="oppor" value="3"></td><td><input type="radio" name="oppor" value="4"></td><td><input type="radio" name="oppor" value="5"></td></tr>
+            <tr><td>Career Development Opportunities</td><td><input type="radio" name="copportunities" value="1"></td><td><input type="radio" name="copportunities" value="2"></td><td><input type="radio" name="copportunities" value="3"></td><td><input type="radio" name="copportunities" value="4"></td><td><input type="radio" name="copportunities" value="5"></td></tr>
+            <tr><td>Employee morale</td><td><input type="radio" name="morale" value="1"></td><td><input type="radio" name="morale" value="2"></td><td><input type="radio" name="morale" value="3"></td><td><input type="radio" name="morale" value="4"></td><td><input type="radio" name="morale" value="5"></td></tr>
+            <tr><td>Fair treatment of employees</td><td><input type="radio" name="etreatment" value="1"></td><td><input type="radio" name="etreatment" value="2"></td><td><input type="radio" name="etreatment" value="3"></td><td><input type="radio" name="etreatment" value="4"></td><td><input type="radio" name="etreatment" value="5"></td></tr>
+            <tr><td>Recognition for a job well done</td><td><input type="radio" name="Job" value="1"></td><td><input type="radio" name="Job" value="2"></td><td><input type="radio" name="Job" value="3"></td><td><input type="radio" name="Job" value="4"></td><td><input type="radio" name="Job" value="5"></td></tr>
+            <tr><td>Support for work-life balance</td><td><input type="radio" name="work-life" value="1"></td><td><input type="radio" name="work-life" value="2"></td><td><input type="radio" name="work-life" value="3"></td><td><input type="radio" name="work-life" value="4"></td><td><input type="radio" name="work-life" value="5"></td></tr>
+            <tr><td>Communication between management and employees</td><td><input type="radio" name="comm" value="1"></td><td><input type="radio" name="comm" value="2"></td><td><input type="radio" name="comm" value="3"></td><td><input type="radio" name="comm" value="4"></td><td><input type="radio" name="comm" value="5"></td></tr>
+            <tr><td>Performance and development planning &amp; evaluation</td><td><input type="radio" name="per" value="1"></td><td><input type="radio" name="per" value="2"></td><td><input type="radio" name="per" value="3"></td><td><input type="radio" name="per" value="4"></td><td><input type="radio" name="per" value="5"></td></tr>
+            <tr><td>Concern with quality and excellence</td><td><input type="radio" name="concern" value="1"></td><td><input type="radio" name="concern" value="2"></td><td><input type="radio" name="concern" value="3"></td><td><input type="radio" name="concern" value="4"></td><td><input type="radio" name="concern" value="5"></td></tr>
+            <tr><td>Administrative policies / procedures</td><td><input type="radio" name="policy" value="1"></td><td><input type="radio" name="policy" value="2"></td><td><input type="radio" name="policy" value="3"></td><td><input type="radio" name="policy" value="4"></td><td><input type="radio" name="policy" value="5"></td></tr>
+          </tbody>
+        </table>
+
+        <div class="btn-center">
+          <button type="button" id="backBtn"><i class="fa-solid fa-circle-chevron-left"></i> Previous</button>
+          <button type="button" id="nextBtn">Next <i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 5 ══ -->
+      <div class="page5" id="page5">
+        <div class="section-title">Supervisor Rating</div>
+
+        <div class="q-label">5. Please rate your supervisor on the following factors.</div>
+        <table class="survey-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th class="gold-col">1<br><span style="font-size:9px;opacity:.7">Poor</span></th>
+              <th>2</th>
+              <th>3<br><span style="font-size:9px;opacity:.7">Avg</span></th>
+              <th>4</th>
+              <th class="gold-col">5<br><span style="font-size:9px;opacity:.7">Excel</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Giving usable performance feedback</td><td><input type="radio" name="feedback" value="1"></td><td><input type="radio" name="feedback" value="2"></td><td><input type="radio" name="feedback" value="3"></td><td><input type="radio" name="feedback" value="4"></td><td><input type="radio" name="feedback" value="5"></td></tr>
+            <tr><td>Recognised accomplishments</td><td><input type="radio" name="accomplishments" value="1"></td><td><input type="radio" name="accomplishments" value="2"></td><td><input type="radio" name="accomplishments" value="3"></td><td><input type="radio" name="accomplishments" value="4"></td><td><input type="radio" name="accomplishments" value="5"></td></tr>
+            <tr><td>Clearly communicated expectations</td><td><input type="radio" name="expectations" value="1"></td><td><input type="radio" name="expectations" value="2"></td><td><input type="radio" name="expectations" value="3"></td><td><input type="radio" name="expectations" value="4"></td><td><input type="radio" name="expectations" value="5"></td></tr>
+            <tr><td>Treated you fairly and respectfully</td><td><input type="radio" name="respectfully" value="1"></td><td><input type="radio" name="respectfully" value="2"></td><td><input type="radio" name="respectfully" value="3"></td><td><input type="radio" name="respectfully" value="4"></td><td><input type="radio" name="respectfully" value="5"></td></tr>
+            <tr><td>Coached, trained &amp; developed you</td><td><input type="radio" name="developed_you" value="1"></td><td><input type="radio" name="developed_you" value="2"></td><td><input type="radio" name="developed_you" value="3"></td><td><input type="radio" name="developed_you" value="4"></td><td><input type="radio" name="developed_you" value="5"></td></tr>
+            <tr><td>Provided leadership</td><td><input type="radio" name="leadership" value="1"></td><td><input type="radio" name="leadership" value="2"></td><td><input type="radio" name="leadership" value="3"></td><td><input type="radio" name="leadership" value="4"></td><td><input type="radio" name="leadership" value="5"></td></tr>
+            <tr><td>Encouraged teamwork &amp; cooperation</td><td><input type="radio" name="team_work" value="1"></td><td><input type="radio" name="team_work" value="2"></td><td><input type="radio" name="team_work" value="3"></td><td><input type="radio" name="team_work" value="4"></td><td><input type="radio" name="team_work" value="5"></td></tr>
+            <tr><td>Resolved concerns promptly</td><td><input type="radio" name="promptly" value="1"></td><td><input type="radio" name="promptly" value="2"></td><td><input type="radio" name="promptly" value="3"></td><td><input type="radio" name="promptly" value="4"></td><td><input type="radio" name="promptly" value="5"></td></tr>
+            <tr><td>Listened to suggestions and feedback</td><td><input type="radio" name="suggestions" value="1"></td><td><input type="radio" name="suggestions" value="2"></td><td><input type="radio" name="suggestions" value="3"></td><td><input type="radio" name="suggestions" value="4"></td><td><input type="radio" name="suggestions" value="5"></td></tr>
+            <tr><td>Kept employees informed</td><td><input type="radio" name="informed" value="1"></td><td><input type="radio" name="informed" value="2"></td><td><input type="radio" name="informed" value="3"></td><td><input type="radio" name="informed" value="4"></td><td><input type="radio" name="informed" value="5"></td></tr>
+            <tr><td>Supported work-life balance</td><td><input type="radio" name="balance" value="1"></td><td><input type="radio" name="balance" value="2"></td><td><input type="radio" name="balance" value="3"></td><td><input type="radio" name="balance" value="4"></td><td><input type="radio" name="balance" value="5"></td></tr>
+            <tr><td>Provided appropriate &amp; challenging assignments</td><td><input type="radio" name="challenging" value="1"></td><td><input type="radio" name="challenging" value="2"></td><td><input type="radio" name="challenging" value="3"></td><td><input type="radio" name="challenging" value="4"></td><td><input type="radio" name="challenging" value="5"></td></tr>
+          </tbody>
+        </table>
+
+        <div class="btn-center">
+          <button type="button" id="backBtn"><i class="fa-solid fa-circle-chevron-left"></i> Previous</button>
+          <button type="button" id="nextBtn">Next <i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- ══ PAGE 6 ══ -->
+      <div class="page6" id="page6">
+        <div class="section-title">Final Reflections</div>
+
+        <div class="textarea-q">
+          <div class="q-label">1. What did you enjoy most while working with SROL?</div>
+          <textarea name="enjoy_most" id="enjoy_most" placeholder="Share what you valued most…"></textarea>
+        </div>
+
+        <div class="textarea-q">
+          <div class="q-label">2. What did you find most frustrating?</div>
+          <textarea name="frustrating" id="frustrating" placeholder="Be candid — your feedback helps us improve…"></textarea>
+        </div>
+
+        <div class="textarea-q">
+          <div class="q-label">3. What recommendations would you make to help Segilola Resources Operating Limited become a better place to work?</div>
+          <textarea name="recommendation" id="recommendation" placeholder="Your suggestions are welcome…"></textarea>
+        </div>
+
+        <div class="btn-center">
+          <button type="button" id="backBtn"><i class="fa-solid fa-circle-chevron-left"></i> Previous</button>
+          <button type="submit" id="submitBtn">Submit Survey <i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+      <!-- Warning message -->
+      <p id="warningMsg">⚠ Please complete all required fields before continuing.</p>
+
+    </div><!-- /form-body -->
+  </form>
+</div>
+
+<footer>
+  <span class="footer-left">&copy; <?= date("Y") ?> HR System &mdash; All rights reserved.</span>
+  <div class="footer-right">
+    <div class="footer-dot"></div>
+    <span class="footer-label">Confidential</span>
+  </div>
+</footer>
+
+<script src="index.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const pages = document.querySelectorAll(".page1, .page2, .page3, .page4, .page5, .page6");
+    const progressBar = document.getElementById("progressBar");
+    const progressLabel = document.getElementById("progressLabel");
+    const warning = document.getElementById("warningMsg");
+    let currentPage = 0;
+
+    function showPage(pageIndex) {
+      pages.forEach((page, index) => {
+        page.style.display = index === pageIndex ? "block" : "none";
+      });
+      const progress = ((pageIndex + 1) / pages.length) * 100;
+      progressBar.style.width = progress + "%";
+      progressLabel.textContent = "Step " + (pageIndex + 1) + " of " + pages.length;
+      warning.style.display = "none";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validatePage(pageIndex) {
+      const currentPageElement = pages[pageIndex];
+      const requiredInputs = currentPageElement.querySelectorAll("input[required], select[required], textarea[required]");
+      let isValid = true;
+
+      requiredInputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.style.borderColor = "red";
+          isValid = false;
+        } else {
+          input.style.borderColor = "";
+        }
+      });
+
+      const radioGroups = {};
+      currentPageElement.querySelectorAll("input[type='radio']").forEach(radio => {
+        const name = radio.name;
+        if (!radioGroups[name]) radioGroups[name] = [];
+        radioGroups[name].push(radio);
+      });
+
+      for (const groupName in radioGroups) {
+        const group = radioGroups[groupName];
+        const isChecked = group.some(radio => radio.checked);
+        if (!isChecked) {
+          group.forEach(radio => radio.parentElement.style.outline = "1px solid red");
+          isValid = false;
+        } else {
+          group.forEach(radio => radio.parentElement.style.outline = "none");
+        }
+      }
+
+      return isValid;
+    }
+
+    showPage(currentPage);
+
+    document.querySelector("form").addEventListener("click", function (e) {
+      if (e.target.id === "nextBtn" || e.target.closest("#nextBtn")) {
+        if (validatePage(currentPage)) {
+          if (currentPage < pages.length - 1) {
+            currentPage++;
+            showPage(currentPage);
+          }
+        } else {
+          warning.style.display = "block";
+        }
+      }
+      if ((e.target.id === "backBtn" || e.target.closest("#backBtn")) && currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+# ---------------------------------------------------------
+# HostelConnect Maintenance Mode — Full Redirect
+# ---------------------------------------------------------
+RewriteEngine On
+RewriteBase /
+
+# Allow access to essential assets so the maintenance page looks right
+RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|svg|ico|webp|woff|woff2|ttf|eot)$ [NC]
+
+# Allow the main index.php (the maintenance page) itself
+#RewriteCond %{REQUEST_URI} !^/index\.php$ [NC]
+
+# Redirect everything else (any path) to index.php
+#RewriteRule ^.*$ /index.php [L,R=302]
+
+
+RewriteEngine On
+#RewriteRule ^hostel/([a-zA-Z0-9-]+)/?$ details.php?slug=$1 [L]
+
+
+RewriteEngine On
+
+# --- Only specific pretty URLs ---
+RewriteRule ^register/?$ register.php [L]
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^roommates/?$ roommates.php [L]
+RewriteRule ^privacy/?$ privacy.php [L]
+RewriteRule ^hostel/?$ hostel.php [L]
+
+Options -Indexes
+
+# Block access to config and sensitive files
+<FilesMatch "^(config\.php|\.env|composer\.json|composer\.lock)$">
+  Require all denied
+</FilesMatch>
+
+
+
+# Basic headers to protect against XSS and other attacks
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php81” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php81___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

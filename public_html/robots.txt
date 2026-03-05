@@ -1,0 +1,22 @@
+# ===============================
+# HostelConnect Robots Directives
+# ===============================
+
+# Apply rules to all search engines
+User-agent: *
+
+# ✅ Allow search engines to crawl public pages
+Allow: /
+
+# 🚫 Block private or sensitive folders
+Disallow: /admin/
+Disallow: /listing/
+Disallow: /student/
+Disallow: /vendor/
+Disallow: /includes/
+Disallow: /private/
+Disallow: /database/
+Disallow: /config/
+
+# ✅ Tell search engines where your sitemap is located
+Sitemap: https://hostelconnect.com.ng/sitemap.xml

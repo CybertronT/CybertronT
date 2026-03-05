@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hostelconnect.com.ng/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://hostelconnect.com.ng/hostel</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://hostelconnect.com.ng/roommates</loc>
+  </url>
+  <url>
+    <loc>https://hostelconnect.com.ng/register</loc>
+  </url>
+  <url>
+    <loc>https://hostelconnect.com.ng/privacy</loc>
+  </url>
+</urlset>

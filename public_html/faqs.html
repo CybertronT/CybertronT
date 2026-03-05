@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - HostelConnect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .faq-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .faq-container h1 {
+      text-align: center;
+      color: #008CBA; /* HostelConnect Blue */
+      margin-bottom: 30px;
+    }
+
+    .faq-item {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: #008CBA;
+      position: relative;
+    }
+
+    .faq-question::after {
+      content: "+";
+      font-size: 20px;
+      position: absolute;
+      right: 20px;
+      color: #E67E22; /* HostelConnect Orange */
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: "-";
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      background: #f0f8fb; /* Light blue */
+      color: #333;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 0 20px;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 15px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I register as a Student, Landlord or Agent?</div>
+      <div class="faq-answer">
+        <p><strong>Step 1:</strong> Click on <em>Register</em> at the top menu or landlord section.<br>
+        <strong>Step 2:</strong> Choose your role (Student, Landlord, or Agent).<br>
+        <strong>Step 3:</strong> Fill in your details including name, email, and password.<br>
+        <strong>Step 4:</strong> Verify your email address.<br>
+        <strong>Step 5:</strong> Once verified, log in and access your dashboard.<br>
+        – Students can search & apply for hostels.<br>
+        – Landlords/Agents can list hostels or apartments.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I log in and reset my password?</div>
+      <div class="faq-answer">
+        <p>Go to the login page and enter your email and password. If you forget your password, click on <em>Forgot Password</em> and follow the instructions sent to your email.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I search and view available houses?</div>
+      <div class="faq-answer">
+        <p>Use the search bar on the homepage. Enter your preferred location, click <em>Search</em>, and browse the available listings with details, photos, and pricing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I contact a landlord or agent about a listing?</div>
+      <div class="faq-answer">
+        <p>Open a listing and click on the <em>Contact Landlord/Agent</em> button. You can message them directly through the platform.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I list a hostel/apartment (Landlord / Agent)?</div>
+      <div class="faq-answer">
+        <p>Log in as a landlord or agent. From your dashboard, click on <em>List Hostel</em>, fill in property details, upload photos, and publish your listing.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I look for or post a roommate request?</div>
+      <div class="faq-answer">
+        <p>Go to the <em>Roommate Section</em> from your dashboard. You can either browse roommate requests or create your own request post with your preferences.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Are there fees? How do payments work and how do I stay secure?</div>
+      <div class="faq-answer">
+        <p>Registration is free. Premium features (like highlighted listings) may involve fees. All payments are handled securely through HostelConnect’s payment system. Always communicate and pay within the platform for safety.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I report a problem or contact support?</div>
+      <div class="faq-answer">
+        <p>Go to the <em>Help & Support</em> section in your dashboard and submit your issue. Our support team will respond via email.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Troubleshooting: I didn't receive verification email / I can't upload photos / login problems</div>
+      <div class="faq-answer">
+        <p>Please check your spam folder for the verification email. If problems persist, clear your browser cache or try a different browser. For uploads, ensure your files meet the size/format requirements. Contact support if the issue continues.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+      item.querySelector(".faq-question").addEventListener("click", () => {
+        // Close all other items
+        faqItems.forEach(i => i.classList.remove("active"));
+        // Open the clicked one
+        item.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>

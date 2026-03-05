@@ -1,0 +1,52 @@
+[18-Sep-2025 20:33:49 UTC] PHP Warning:  Undefined array key "listing_id" in /home1/hostelco/public_html/listing/update_listing.php on line 30
+[19-Sep-2025 08:28:03 UTC] PHP Warning:  require(config.php): Failed to open stream: No such file or directory in /home1/hostelco/public_html/listing/add_listing.php on line 3
+[19-Sep-2025 08:28:03 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'config.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home1/hostelco/public_html/listing/add_listing.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_listing.php on line 3
+[19-Sep-2025 08:28:27 UTC] PHP Warning:  require(config.php): Failed to open stream: No such file or directory in /home1/hostelco/public_html/listing/add_listing.php on line 3
+[19-Sep-2025 08:28:27 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'config.php' (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home1/hostelco/public_html/listing/add_listing.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_listing.php on line 3
+[19-Sep-2025 14:22:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/listing/add_hostel.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 47
+[19-Sep-2025 14:24:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/listing/add_hostel.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 47
+[19-Sep-2025 14:26:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/listing/add_hostel.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 47
+[19-Sep-2025 14:34:26 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/listing/add_hostel.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 47
+[19-Sep-2025 17:45:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/listing/add_hostel.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 47
+[19-Sep-2025 17:46:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mime_content_type() in /home1/hostelco/public_html/listing/add_hostel.php:47
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 47
+[21-Sep-2025 16:41:59 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/hostelco/public_html/listing/add_hostel.php:92
+Stack trace:
+#0 /home1/hostelco/public_html/listing/add_hostel.php(92): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 92
+[26-Sep-2025 08:34:11 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home1/hostelco/public_html/listing/add_hostel.php:108
+Stack trace:
+#0 /home1/hostelco/public_html/listing/add_hostel.php(108): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home1/hostelco/public_html/listing/add_hostel.php on line 108
+[26-Sep-2025 09:19:04 UTC] Execute failed: Duplicate entry '0' for key 'hostels.slug'
+[26-Sep-2025 09:19:15 UTC] Execute failed: Duplicate entry '0' for key 'hostels.slug'
+[01-Oct-2025 09:12:28 UTC] PHP Warning:  require(config.php): Failed to open stream: No such file or directory in /home1/hostelco/public_html/listing/add_listing.php on line 3
+[01-Oct-2025 09:12:28 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'config.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home1/hostelco/public_html/listing/add_listing.php:3
+Stack trace:
+#0 {main}
+  thrown in /home1/hostelco/public_html/listing/add_listing.php on line 3
